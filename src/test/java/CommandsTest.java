@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -49,6 +50,19 @@ public class CommandsTest {
         } else System.out.println("Not Changed");
     }
 
+    @Test
+    public void fourthTest() {
+        driver.navigate().to("http://the-internet.herokuapp.com/drag_and_drop");
+        WebElement aEl = driver.findElement(By.id("column-a"));
+        WebElement bEl = driver.findElement(By.id("column-b"));
+        final int aLocation = aEl.getLocation().x;
+        final int bLocation = bEl.getLocation().x;
+        if (aLocation < bLocation) {
+            System.out.println("B div is located to the right of the A div");
+        } else {
+            System.out.println("B div is located to the left of the A div");
+        }
+    }
     @AfterClass
     public void afterTest() {
         driver.manage().deleteAllCookies();
