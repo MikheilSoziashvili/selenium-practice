@@ -1,6 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -41,11 +40,11 @@ public class CommandsTest {
     @Test
     public void thirdTest() {
         driver.navigate().to("http://uitestpractice.com/Students/Actions");
-        WebElement ertiani = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[3]/ol/li[1]"));
-        WebElement tormeti = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[3]/ol/li[12]"));
+        WebElement first = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[3]/ol/li[1]"));
+        WebElement twelfth = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[3]/ol/li[12]"));
         Actions action = new Actions(driver);
-        action.moveToElement(ertiani).clickAndHold().moveToElement(tormeti).release().build().perform();
-        if (ertiani.getCssValue("background-color") != "bisque") {
+        action.moveToElement(first).clickAndHold().moveToElement(twelfth).release().build().perform();
+        if (!first.getCssValue("background-color").equals("bisque")) {
             System.out.println("Background Changed");
         } else System.out.println("Not Changed");
     }
