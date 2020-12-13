@@ -3,10 +3,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class CommandTest {
+public class WebElementsTest {
     private WebDriver driver;
 
     @BeforeClass
@@ -19,9 +20,10 @@ public class CommandTest {
     @Test
     public void firstTest() {
         driver.get("http://the-internet.herokuapp.com/add_remove_elements/");
+        driver.manage().window().maximize();
         WebElement addButton = driver.findElement(By.xpath("/html/body/div[2]/div/div/button"));
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             addButton.click();
         }
 
@@ -36,7 +38,13 @@ public class CommandTest {
     @Test
     public void secondTest() {
         driver.navigate().to("http://the-internet.herokuapp.com/challenging_dom");
-
+        final String startingTd = driver.findElement(By.xpath("//*[@id='content']//td[contains(text(),'Apeirian9')]//parent::tr//following::td")).getText();
+        System.out.println(startingTd);
     }
 
+    @AfterClass
+    public void afterTests() {
+        driver.manage().deleteAllCookies();
+        driver.quit();
+    }
 }
