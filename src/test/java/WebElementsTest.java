@@ -31,8 +31,9 @@ public class WebElementsTest {
         System.out.println(button);
         final String button2ndWay = driver.findElement(By.cssSelector("button[class^='added']:last-child")).getText();
         System.out.println(button2ndWay);
-        final String button3rdWay = driver.findElement(By.xpath("//*[contains(@class, 'manually')][contains(text(),'Delete')][last()]")).getText();
+        final String button3rdWay = driver.findElement(By.xpath("//*[contains(@class,'manually')][contains(text(),'Delete')][last()]")).getText();
         System.out.println(button3rdWay);
+        //ends-with ფუნქცია ვერ ავამუშავე და როგორც მოვძებნე ალბათ xpath ვერსიის ბრალია რომელსაც chrome იყენებს
     }
 
     @Test
