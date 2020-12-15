@@ -31,7 +31,7 @@ public class WebElementsTest {
         System.out.println(button);
         final String button2ndWay = driver.findElement(By.cssSelector("button[class^='added']:last-child")).getText();
         System.out.println(button2ndWay);
-        final String button3rdWay = driver.findElement(By.xpath("//*[contains(@class,'manually')][contains(text(),'Delete')][last()]")).getText();
+        final String button3rdWay = driver.findElement(By.xpath("//*[contains(@class, 'manually')][contains(text(),'Delete')][last()]")).getText();
         System.out.println(button3rdWay);
         //ends-with ფუნქცია ვერ ავამუშავე და როგორც მოვძებნე ალბათ xpath ვერსიის ბრალია რომელსაც chrome იყენებს
     }
@@ -39,8 +39,10 @@ public class WebElementsTest {
     @Test
     public void secondTest() {
         driver.navigate().to("http://the-internet.herokuapp.com/challenging_dom");
-        final String startingTd = driver.findElement(By.xpath("//*[@id='content']//td[contains(text(),'Apeirian9')]//parent::tr//following::td")).getText();
-        System.out.println(startingTd);
+        final String firstTd = driver.findElement(By.xpath("//td[contains(text(),'Apeirian9')]//parent::tr//following::td")).getText();
+        final String secondTd = driver.findElement(By.xpath("//td[contains(text(),'Apeirian9')]//following-sibling::td")).getText();
+        System.out.println(firstTd);
+        System.out.println(secondTd);
     }
 
     @AfterClass
