@@ -21,7 +21,7 @@ public class WebElementsTest {
     public void firstTest() {
         driver.get("http://the-internet.herokuapp.com/add_remove_elements/");
         driver.manage().window().maximize();
-        WebElement addButton = driver.findElement(By.xpath("/html/body/div[2]/div/div/button"));
+        WebElement addButton = driver.findElement(By.xpath("//button[contains(text(),'Add Element')]"));
 
         for (int i = 0; i < 3; i++) {
             addButton.click();
