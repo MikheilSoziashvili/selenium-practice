@@ -23,7 +23,7 @@ public class WebFormsTest {
     @Test
     public void test() {
         driver.get("http://webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html");
-        final WebElement selectableOption = driver.findElement(By.xpath("//select[@id='dropdowm-menu-1']/option[@value='c#']"));
+        final WebElement selectableOption = driver.findElement(By.xpath("//option[@value='c#']"));
         selectableOption.click();
 
         Select select = new Select(driver.findElement(By.xpath("//select[@id='dropdowm-menu-1']")));
@@ -40,7 +40,7 @@ public class WebFormsTest {
 
         driver.findElement(By.xpath("//input[@type='radio' and @value='yellow']")).click();
 
-        final WebElement orangeOption = driver.findElement(By.xpath("//select[@id='fruit-selects']/option[@value='orange']"));
+        final WebElement orangeOption = driver.findElement(By.xpath("//option[@value='orange']"));
         if (!orangeOption.isEnabled()) {
             System.out.println("Not Enabled");
         } else {
