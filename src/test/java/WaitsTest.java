@@ -19,7 +19,7 @@ public class WaitsTest {
 
         driver = new ChromeDriver();
     }
-
+// s
     @Test
     public void firstTest() {
         driver.get("https://demoqa.com/progress-bar");
