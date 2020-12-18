@@ -27,6 +27,8 @@ public class SwitchToTest {
         driver.switchTo().defaultContent();
         driver.findElement(By.xpath("//button[@title='Align center']")).click();
     }
+//s
+
 
     @Test
     public void secondTest() {

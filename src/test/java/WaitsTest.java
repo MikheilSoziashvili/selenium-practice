@@ -23,6 +23,7 @@ public class WaitsTest {
     @Test
     public void firstTest() {
         driver.get("https://demoqa.com/progress-bar");
+        driver.manage().window().maximize();
         final WebDriverWait wait = new WebDriverWait(driver, 20);
         final WebElement startButton = driver.findElement(By.id("startStopButton"));
         final WebElement finalText = driver.findElement(By.xpath("//div[@id='progressBar']/div[@role='progressbar']"));
