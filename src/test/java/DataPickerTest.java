@@ -7,6 +7,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class DataPickerTest {
     private WebDriver driver;
 
@@ -37,11 +39,15 @@ public class DataPickerTest {
         try {
             driver.findElement(By.xpath("//a[@class='ui-datepicker-prev ui-corner-all' and @title='Prev']")).click();
 
-            final String nameOfMonth = driver.findElement(By.xpath("//span[@class='ui-datepicker-month']")).getText();
-            final String year = driver.findElement(By.xpath("//span[@class='ui-datepicker-year']")).getText();
+            List<WebElement> visibleDates = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar']//td"));
 
-            if (nameOfMonth.equals("November") && year.equals("2020")) {
-                driver.findElement(By.xpath("//td[@data-month='10' and @data-year='2020']/a[text()='30']")).click();
+            for (WebElement element:visibleDates) {
+                final String date = element.getText();
+
+                if (date.equalsIgnoreCase("30")) {
+                    element.click();
+                    break;
+                }
             }
         } catch (NoSuchElementException e) {
             System.out.println("no such element");

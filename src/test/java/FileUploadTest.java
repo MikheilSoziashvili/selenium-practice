@@ -8,6 +8,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.nio.file.Path;
+
 public class FileUploadTest {
     private WebDriver driver;
 
@@ -21,12 +24,10 @@ public class FileUploadTest {
     @Test
     public void firstTest() {
         driver.get("http://the-internet.herokuapp.com/upload");
-
-        final String myAbsolute = "C:\\Users\\MixeilSoziashvili\\Desktop\\selenium-homework\\";
-        final String testFileLocation = "src\\test\\test";
-        final String finalPath = myAbsolute + testFileLocation;
+        File file = new File("src\\test\\test");
+        String finalFile1 = file.getAbsolutePath();
         final WebElement uploadButton = driver.findElement(By.id("file-submit"));
-        driver.findElement(By.id("file-upload")).sendKeys(finalPath);
+        driver.findElement(By.id("file-upload")).sendKeys(finalFile1);
         uploadButton.click();
 
         try {
