@@ -2,7 +2,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -24,7 +23,7 @@ public class AdvancedSeleniumTest {
     @Test
     public void firstTest() {
         driver.get("http://webdriveruniversity.com/Autocomplete-TextField/autocomplete-textfield.html");
-        driver.findElement(By.id("myInput")).sendKeys("A");
+        driver.findElement(By.id("myInput")).sendKeys("a");
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -34,7 +33,7 @@ public class AdvancedSeleniumTest {
         try {
           List<WebElement> options = driver.findElements(By.xpath("//div[@id='myInputautocomplete-list']/child::div/child::input"));
           for (WebElement option:options) {
-              if (option.getAttribute("value").equals("Asparagus")) {
+              if (option.getAttribute("value").equals("Avacado")) {
                   js.executeScript("arguments[0].click()", option);
                   break;
               }
@@ -42,7 +41,7 @@ public class AdvancedSeleniumTest {
         } catch (NoSuchElementException e) {
             System.out.println("no such element");
         }
-        //ეს ხაზი მაღლა ციკლშიც შეიძლება ეწეროს სადაც Asparagus-ს ვაჭერ
+        //ეს ხაზი მაღლა ციკლშიც შეიძლება ეწეროს სადაც Avocado-ს ვაჭერ
         js.executeScript("arguments[0].click()", driver.findElement(By.id("submit-button")));
     }
 
@@ -74,7 +73,6 @@ public class AdvancedSeleniumTest {
         Actions act = new Actions(driver);
 
         final WebElement leftBar = driver.findElement(By.id("zone2-entries"));
-        final String string = "0 Entries";
 
         js.executeScript("arguments[0].scrollIntoView()", leftBar);
         act.moveToElement(leftBar).perform();
