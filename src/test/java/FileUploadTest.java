@@ -9,7 +9,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.File;
-import java.nio.file.Path;
 
 public class FileUploadTest {
     private WebDriver driver;
