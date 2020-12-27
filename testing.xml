@@ -3,16 +3,16 @@
 <suite name="browser" annotations="JDK" parallel="tests">
 
     <test name="firefoxTest">
+        <parameter name="browser" value="firefox"/>
         <classes>
             <class name="CrossBrowserTest"/>
-            <parameter name="browser" value="firefox"/>
         </classes>
     </test>
 
     <test name="chromeTest">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="CrossBrowserTest"/>
-            <parameter name="browser" value="chrome"/>
         </classes>
     </test>
 

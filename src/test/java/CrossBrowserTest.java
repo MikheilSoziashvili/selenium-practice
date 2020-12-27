@@ -15,7 +15,7 @@ import java.util.List;
 public class CrossBrowserTest {
     private WebDriver driver;
 
-    @Parameters({"browser"})
+    @Parameters("browser")
     @BeforeClass
     public void setup(String browser) {
         if (browser.equalsIgnoreCase("firefox")) {
@@ -85,7 +85,6 @@ public class CrossBrowserTest {
 
         System.out.println(js.executeScript("return document.querySelector('#zone2-entries').innerText;"));
     }
-
 
     @AfterClass
     public void afterTests() {
