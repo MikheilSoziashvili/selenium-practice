@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="browser" annotations="JDK" parallel="tests">
+
+    <test name="firefoxTest">
+        <classes>
+            <class name="CrossBrowserTest"/>
+            <parameter name="browser" value="firefox"/>
+        </classes>
+    </test>
+
+    <test name="chromeTest">
+        <classes>
+            <class name="CrossBrowserTest"/>
+            <parameter name="browser" value="chrome"/>
+        </classes>
+    </test>
+
+</suite>
