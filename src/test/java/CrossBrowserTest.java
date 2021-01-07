@@ -1,20 +1,27 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.List;
 
-public class AdvancedSeleniumTest {
+public class CrossBrowserTest {
     private WebDriver driver;
 
+    @Parameters({"browser"})
     @BeforeClass
-    public void setup() {
-        driver = new HtmlUnitDriver(true);
+    public void setup(String browser) {
+        if (browser.equalsIgnoreCase("firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
+        } else if (browser.equalsIgnoreCase("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        }
     }
 
     @Test
@@ -24,17 +31,17 @@ public class AdvancedSeleniumTest {
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        WebDriverWait wait = new WebDriverWait(driver,2);
+        WebDriverWait wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("myInputautocomplete-list"))));
 
         try {
-          List<WebElement> options = driver.findElements(By.xpath("//div[@id='myInputautocomplete-list']/child::div/child::input"));
-          for (WebElement option:options) {
-              if (option.getAttribute("value").equals("Avacado")) {
-                  js.executeScript("arguments[0].click()", option);
-                  break;
-              }
-          }
+            List<WebElement> options = driver.findElements(By.xpath("//div[@id='myInputautocomplete-list']/child::div/child::input"));
+            for (WebElement option : options) {
+                if (option.getAttribute("value").equals("Avacado")) {
+                    js.executeScript("arguments[0].click()", option);
+                    break;
+                }
+            }
         } catch (NoSuchElementException e) {
             System.out.println("no such element");
         }
@@ -54,7 +61,6 @@ public class AdvancedSeleniumTest {
         act.moveToElement(item).perform();
 
         wait.until(ExpectedConditions.visibilityOf(item));
-
         try {
             js.executeScript("arguments[0].click()", driver.findElement(By.xpath("//li[contains(text(), 'Practice magic')]//i")));
         } catch (NoSuchElementException e) {
